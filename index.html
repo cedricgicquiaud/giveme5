@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GiveMe5 - spécialiste d'avis clients Google</title>
+<meta name="description" content="Multipliez vos avis Google avec la plaque NFC / QR code GiveMe5. Sans abonnement, valable à vie, livré sous 4 jours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ Tokens ============ */
+:root{
+  --gold:#f0b400;          /* jaune marque — CTA, accents forts */
+  --gold-soft:#ffca28;     /* jaune clair — dégradés */
+  --gold-deep:#a67300;     /* or foncé — texte accent lisible sur blanc */
+  --star:#fbbc04;          /* ambre étoile Google — réservé aux étoiles */
+  --ink:#23232e;           /* encre — titres, texte fort */
+  --navy:#2e2e3a;          /* surfaces sombres marque */
+  --body:#565660;          /* texte courant */
+  --honey:#fff7e0;         /* fond de section chaud */
+  --honey-deep:#ffedb8;
+  --line:#f0e6cb;          /* filets */
+  --paper:#fff;
+  --radius:22px;
+  --shadow-card:0 10px 34px rgba(35,35,46,.07);
+  --shadow-pop:0 26px 54px rgba(35,35,46,.20);
+}
+
+/* ============ Base ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;color:var(--ink);line-height:1.65;background:var(--paper);
+  overflow-x:hidden;font-size:17px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.section{padding:clamp(64px,9vw,104px) 0}
+h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.14;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,3.4vw,2.5rem);text-align:center}
+.sub{text-align:center;color:var(--body);max-width:620px;margin:16px auto 0;font-size:1.08rem}
+:focus-visible{outline:3px solid rgba(240,180,0,.65);outline-offset:3px;border-radius:6px}
+
+/* Surlignage marqueur */
+.hl{background:linear-gradient(transparent 55%,rgba(255,216,77,.85) 55%,rgba(255,216,77,.85) 92%,transparent 92%);
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em}
+
+/* Boutons */
+.btn{display:inline-block;font-family:'Poppins',sans-serif;background:var(--gold);color:var(--ink);
+  font-weight:700;font-size:1rem;padding:15px 36px;border-radius:40px;
+  box-shadow:0 8px 22px rgba(240,180,0,.42);border:none;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(240,180,0,.55);filter:brightness(1.04)}
+.btn:active{transform:translateY(-1px)}
+.btn-lg{font-size:1.12rem;padding:18px 46px}
+.eyebrow{font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:2.5px;font-weight:700;
+  font-size:.82rem;color:var(--gold-deep)}
+
+/* Garanties (chips) */
+.assure{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;padding:0;list-style:none}
+.assure li{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:700;color:var(--ink)}
+.assure li:before{content:"✓";flex:none;width:20px;height:20px;border-radius:50%;background:var(--gold);
+  color:var(--ink);font-size:.72rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+
+/* Apparition au scroll */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* ============ Header ============ */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);transition:box-shadow .25s ease}
+header.scrolled{box-shadow:0 8px 30px rgba(35,35,46,.08)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:116px}
+.logo-icon{justify-self:start;display:flex;align-items:center}
+.logo-icon img{height:100px;width:auto}
+.wordmark{justify-self:center;font-family:'Poppins',sans-serif;font-weight:900;font-size:2.2rem;
+  letter-spacing:-1px;color:var(--ink);line-height:1}
+.wordmark b{color:var(--gold);font-weight:900}
+.header-cta{justify-self:end}
+
+/* ============ Hero ============ */
+.hero{background:linear-gradient(165deg,#fffdf6 0%,#fff3cf 58%,#ffe9a8 100%);position:relative;overflow:hidden}
+.hero-star{position:absolute;top:-70px;right:-60px;width:380px;height:380px;opacity:.5;z-index:0;pointer-events:none}
+.hero-glow{position:absolute;bottom:-160px;left:-120px;width:420px;height:420px;border-radius:50%;z-index:0;
+  background:radial-gradient(circle,rgba(240,180,0,.28),transparent 65%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;
+  padding-top:64px;padding-bottom:80px;position:relative;z-index:1}
+
+/* Signature : les étoiles se remplissent comme un avis qu'on laisse */
+.rating-live{display:flex;align-items:center;gap:3px;margin-bottom:18px}
+.rating-live .st{font-size:1.5rem;line-height:1;color:#e7dfc9;animation:starfill .45s ease forwards;transform:scale(.8)}
+.rating-live .st:nth-child(1){animation-delay:.25s}
+.rating-live .st:nth-child(2){animation-delay:.45s}
+.rating-live .st:nth-child(3){animation-delay:.65s}
+.rating-live .st:nth-child(4){animation-delay:.85s}
+.rating-live .st:nth-child(5){animation-delay:1.05s}
+@keyframes starfill{60%{transform:scale(1.25)}100%{color:var(--star);transform:scale(1)}}
+.rating-note{margin-left:12px;font-size:.85rem;font-weight:800;color:var(--ink);background:#fff;
+  border:1px solid var(--line);border-radius:30px;padding:3px 12px;opacity:0;animation:notein .5s ease 1.35s forwards}
+@keyframes notein{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.3rem);font-weight:900}
+.hero .lead{margin-top:20px;font-size:1.3rem;font-weight:700;color:var(--navy);font-family:'Poppins',sans-serif}
+.hero .lead em{font-style:normal;color:var(--gold-deep)}
+.hero-cta{margin-top:30px}
+.hero-img video{border-radius:var(--radius);box-shadow:var(--shadow-pop);width:100%;display:block}
+
+/* ============ Facilité ============ */
+.ease{background:var(--honey)}
+.ease-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:96px;align-items:center}
+.ease-video{display:flex;justify-content:center}
+.ease-video video{width:100%;max-width:330px;max-height:560px;object-fit:contain;border-radius:var(--radius);
+  box-shadow:var(--shadow-pop);display:block;background:#fff}
+.ease-text h2{text-align:left;font-size:clamp(1.7rem,2.8vw,2.15rem);margin:12px 0 16px}
+.ease-text .lead-p{color:var(--body);font-size:1.08rem;margin-bottom:22px}
+.ease-list{list-style:none;margin-bottom:30px}
+.ease-list li{position:relative;padding:9px 0 9px 36px;color:var(--body);font-size:1.02rem}
+.ease-list li:before{content:"✓";position:absolute;left:0;top:11px;width:23px;height:23px;border-radius:50%;
+  background:var(--gold);color:var(--ink);font-size:.78rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center}
+.ease-list li b{color:var(--ink)}
+
+/* ============ Confiance (logos) ============ */
+.trust{padding:64px 0;background:var(--paper);overflow:hidden}
+.trust p{text-align:center;font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:2.5px;
+  font-size:.88rem;color:var(--body);margin-bottom:44px}
+.marquee{position:relative;width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;align-items:center;gap:90px;width:max-content;animation:scroll-x 28s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track img{height:100px;width:auto;object-fit:contain;flex:none;
+  filter:grayscale(1);opacity:.68;transition:filter .25s ease,opacity .25s ease}
+.marquee-track img:hover{filter:grayscale(0);opacity:1}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ Stats ============ */
+.stats{background:var(--honey)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:56px}
+.card{background:var(--paper);border-radius:20px;padding:32px 26px;box-shadow:var(--shadow-card);
+  border:1px solid var(--line);transition:transform .22s ease,box-shadow .22s ease;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(35,35,46,.12)}
+.card .num{font-family:'Poppins',sans-serif;font-size:2.9rem;font-weight:900;line-height:1;color:var(--gold-deep)}
+.card .num small{font-size:1.6rem;vertical-align:baseline}
+.card h3{font-size:1.06rem;margin:12px 0 10px;font-weight:700}
+.card p{color:var(--body);font-size:.95rem}
+.card.accent{background:var(--navy);border-color:var(--navy);color:#fff}
+.card.accent h3{color:#fff;font-size:1.3rem;margin-top:0}
+.card.accent ul{list-style:none;margin-top:6px;font-weight:700;font-size:1rem}
+.card.accent ul li{padding:7px 0 7px 30px;position:relative}
+.card.accent ul li:before{content:"✓";position:absolute;left:0;top:7px;width:20px;height:20px;border-radius:50%;
+  background:var(--gold);color:var(--ink);font-size:.7rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center}
+
+/* ============ Calculateur ============ */
+.calc{background:var(--navy);color:#fff}
+.calc-box{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-top:20px}
+.calc h2{text-align:left;color:#fff}
+.calc .sub{text-align:left;margin-left:0;color:#c9cdd4}
+.slider-row{margin:28px 0}
+.slider-row label{display:flex;justify-content:space-between;font-weight:700;margin-bottom:12px}
+.slider-row label b{color:var(--gold-soft);font-size:1.25rem;font-family:'Poppins',sans-serif}
+input[type=range]{-webkit-appearance:none;width:100%;height:8px;border-radius:8px;background:#4a4a57;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;
+  background:var(--gold);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.4);transition:transform .15s ease}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-radius:50%;background:var(--gold);cursor:pointer}
+.calc-note{font-size:.85rem;color:#9a9aa6;margin-top:6px}
+.result{background:linear-gradient(150deg,var(--gold),var(--gold-soft));color:var(--ink);
+  border-radius:24px;padding:38px 26px;text-align:center;box-shadow:0 20px 50px rgba(240,180,0,.35);
+  max-width:360px;width:100%;margin:0 auto}
+.result .big{font-family:'Poppins',sans-serif;font-size:4rem;font-weight:900;line-height:1}
+.result .big.pulse{animation:pulse .35s ease}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.result .lbl{font-size:1.25rem;font-weight:800;margin-top:4px}
+.result .stars-row{margin-top:10px;color:rgba(35,35,46,.55);letter-spacing:3px;font-size:1rem}
+
+/* ============ Pourquoi ============ */
+.why h2 span{color:var(--gold-deep)}
+.ps{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:56px}
+.ps-col{border-radius:var(--radius);padding:36px 32px}
+.ps-col.today{background:#fdf3f0;border:1px solid #f6d9d0}
+.ps-col.gm5{background:var(--honey);border:1px solid var(--line)}
+.ps-col h3.tag{font-size:1.45rem;text-align:center;margin-bottom:26px}
+.ps-col.today h3.tag{color:#d4553a}
+.ps-col.gm5 h3.tag{color:var(--gold-deep)}
+.ps-item{margin-bottom:22px}
+.ps-item:last-child{margin-bottom:0}
+.ps-item h4{font-family:'Poppins',sans-serif;font-size:1.02rem;font-weight:700;margin-bottom:6px;
+  display:flex;gap:9px;align-items:baseline}
+.ps-item.today h4:before{content:"✕";color:#d4553a;font-weight:900}
+.ps-item.gm5 h4:before{content:"✓";color:var(--gold-deep);font-weight:900}
+.ps-item p{color:var(--body);font-size:.94rem}
+
+/* ============ Comment ça marche ============ */
+.how{background:var(--paper);overflow:hidden}
+.how-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.how-visual{display:flex;justify-content:center}
+.how-video{width:100%;max-width:560px;display:block;border-radius:var(--radius);
+  box-shadow:var(--shadow-pop);background:#fff}
+.how-text h2{text-align:left;font-size:clamp(1.8rem,3vw,2.4rem)}
+.how-sub{color:var(--body);font-size:1.05rem;margin:14px 0 20px}
+.how-step{padding:24px 0;border-bottom:1px solid var(--line)}
+.how-step:last-child{border-bottom:none}
+.how-step h3{font-size:1.4rem;display:flex;align-items:center;gap:12px}
+.how-step p{color:var(--body);margin-top:10px;font-size:1rem}
+
+/* ============ Témoignages (cartes avis Google) ============ */
+.tst-head{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px}
+.tst{background:var(--paper);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-card);
+  border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease}
+.tst:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(35,35,46,.12)}
+.tst .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.tst .stars{color:var(--star);font-size:1.15rem;letter-spacing:2px}
+.tst .badge{font-size:.72rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--body)}
+.tst p{margin:14px 0 22px;font-size:1rem;color:var(--navy);flex:1}
+.tst .who{display:flex;align-items:center;gap:14px}
+.tst .who img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--honey-deep)}
+.tst .who b{display:block;font-weight:800}
+.tst .who span{color:var(--body);font-size:.88rem}
+
+/* Carrousel photos en situation */
+.photo-marquee{position:relative;width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.photo-track{display:flex;gap:20px;width:max-content;animation:scroll-x 55s linear infinite}
+.photo-marquee:hover .photo-track{animation-play-state:paused}
+.photo-track img{height:300px;width:auto;flex:none;border-radius:18px;object-fit:cover;
+  box-shadow:0 12px 30px rgba(35,35,46,.14)}
+
+/* ============ FAQ ============ */
+.faqs{background:var(--honey)}
+.faq-list{max-width:820px;margin:52px auto 0}
+.faq{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin-bottom:16px;overflow:hidden;
+  transition:box-shadow .2s ease}
+.faq[open]{box-shadow:var(--shadow-card)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 26px;font-weight:800;font-size:1.06rem;
+  display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";font-size:1.7rem;color:var(--gold);font-weight:400;line-height:1;
+  transition:transform .2s ease}
+.faq[open] summary:after{content:"−"}
+.faq .ans{padding:0 26px 24px;color:var(--body)}
+.faq .ans b{color:var(--gold-deep)}
+
+/* ============ CTA final ============ */
+.videobg{position:relative;overflow:hidden;isolation:isolate}
+.videobg>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.videobg:after{content:"";position:absolute;inset:0;z-index:-1}
+.videobg.dark:after{background:rgba(30,30,40,.66)}
+.final{text-align:center}
+.final h2{font-size:clamp(1.9rem,3.4vw,2.6rem);color:#fff;max-width:820px;margin:0 auto}
+.final p{font-size:1.2rem;font-weight:700;color:#f4ead0;margin:18px 0 32px}
+.final .btn{background:var(--gold);color:var(--ink);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.final .assure{justify-content:center;margin-top:26px}
+.final .assure li{color:#fff}
+
+/* ============ Footer ============ */
+footer{background:var(--navy);color:#c9cdd4;padding:56px 0;text-align:center}
+.footer-wordmark{display:inline-block;font-family:'Poppins',sans-serif;font-weight:900;font-size:2rem;
+  letter-spacing:-1px;color:#fff;margin-bottom:8px}
+.footer-wordmark span{color:var(--gold)}
+.footer-tag{font-size:.95rem;color:#9a9aa6;margin-bottom:22px}
+.footer-sep{width:56px;height:3px;border-radius:3px;background:var(--gold);margin:0 auto 22px}
+footer a{color:var(--gold)}
+footer a:hover{text-decoration:underline}
+footer .fine{font-size:.9rem;margin-top:6px}
+
+/* ============ CTA mobile fixe ============ */
+.mobile-cta{display:none}
+
+/* ============ Responsive ============ */
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;text-align:center}
+  .rating-live{justify-content:center}
+  .hero-img{order:-1}
+  .assure{justify-content:center}
+  .nav{height:76px}
+  .logo-icon img{height:52px}
+  .wordmark{font-size:1.5rem}
+  .header-cta{padding:11px 20px;font-size:.9rem}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .calc-box,.ps,.tst-grid,.ease-grid,.how-grid{grid-template-columns:1fr}
+  .ease-video{max-width:460px;margin:0 auto}
+  .ease-text h2{text-align:center}
+  .ease-text .eyebrow{display:block;text-align:center}
+  .how-visual{max-width:480px;margin:0 auto 20px}
+  .how-text h2,.how-sub{text-align:center}
+  .calc h2,.calc .sub{text-align:center}
+  .mobile-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:60;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .mobile-cta .btn{display:block;text-align:center;width:100%}
+  body{padding-bottom:80px}
+}
+@media(max-width:560px){
+  .stat-grid{grid-template-columns:1fr}
+  .marquee-track{gap:56px}
+  .marquee-track img{height:72px}
+  .photo-track img{height:220px}
+}
+
+/* ============ Motion réduit ============ */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .rating-live .st{animation:none;color:var(--star);transform:none}
+  .rating-note{animation:none;opacity:1}
+  .marquee-track,.photo-track{animation:none}
+  .btn,.card,.tst{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="logo-icon"><img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Logo_GM5-1920w.png" alt="GiveMe5"></a>
+    <a href="#" class="wordmark">GiveMe<b>5</b></a>
+    <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn header-cta" target="_blank" rel="noopener">Je Commande !</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-star" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6l12.9 26.2 28.9 4.2-20.9 20.4 4.9 28.8L50 72l-25.8 13.6 4.9-28.8L8.2 36.4l28.9-4.2z"
+          fill="none" stroke="#f0b400" stroke-width="1.6" opacity=".55"/>
+  </svg>
+  <span class="hero-glow" aria-hidden="true"></span>
+  <div class="wrap">
+    <div>
+      <div class="rating-live" aria-hidden="true">
+        <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+        <span class="rating-note">+1 avis Google</span>
+      </div>
+      <h1>Multipliez vos <span class="hl">avis Google</span> de manière simple et efficace.</h1>
+      <p class="lead">Avec GiveMe5 les avis, c'est <em>Easy&nbsp;!</em></p>
+      <div class="hero-cta">
+        <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Je Commande !</a>
+      </div>
+      <ul class="assure">
+        <li>Sans abonnement</li>
+        <li>Valable à vie</li>
+        <li>Livré sous 4 jours</li>
+      </ul>
+    </div>
+    <div class="hero-img">
+      <video src="https://vid.cdn-website.com/6ee1641d/videos/K306dZnTpaiSTsVhdHhg_Plaque-v.mp4"
+             poster="https://irp.cdn-website.com/6ee1641d/dms3rep/multi/K306dZnTpaiSTsVhdHhg_Plaque.v2.0000000.jpg"
+             autoplay muted loop playsinline aria-hidden="true"></video>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITÉ (vidéo + texte) -->
+<section class="section ease">
+  <div class="wrap ease-grid">
+    <div class="ease-video reveal">
+      <video src="https://vid.cdn-website.com/6ee1641d/videos/BgcCrGsLTKWQovzQEbGQ_Yellow+Kids+Fashion+Testimonies+Video-v.mp4"
+             poster="https://irp.cdn-website.com/6ee1641d/dms3rep/multi/BgcCrGsLTKWQovzQEbGQ_Yellow+Kids+Fashion+Testimonies+Video.v2.0000000.jpg"
+             autoplay muted loop playsinline aria-hidden="true"></video>
+    </div>
+    <div class="ease-text reveal d1">
+      <span class="eyebrow">Un simple scan suffit !</span>
+      <h2>Collecter un avis n'a jamais été aussi facile</h2>
+      <p class="lead-p">Vos clients scannent, notent, publient. En quelques secondes, leur avis est en ligne sur votre fiche Google — sans application à installer, sans compte à créer sur place.</p>
+      <ul class="ease-list">
+        <li><b>Aucune app à télécharger</b> — un survol NFC ou un scan du QR code, et c'est parti.</li>
+        <li><b>Redirection automatique</b> — le client arrive directement sur votre page d'avis Google.</li>
+        <li><b>Quelques secondes</b> — l'avis est laissé avant même de quitter votre établissement.</li>
+        <li><b>Accessible à tous</b> — compatible avec 100% des smartphones via le QR code.</li>
+      </ul>
+      <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Je Commande !</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIANCE -->
+<section class="trust">
+  <div class="wrap">
+    <p>ILS NOUS FONT CONFIANCE !</p>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/183-5839f05c-1920w.png" alt="Krys">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/181-66514bba-1920w.png" alt="Renault">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/155-e6a73d00-1920w.png" alt="iad">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/178-fbd1c6e1-1920w.png" alt="La ronde des pains">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/156-4ce2af71-1920w.png" alt="Propriétés privées">
+      <!-- duplicat pour boucle continue -->
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/183-5839f05c-1920w.png" alt="">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/181-66514bba-1920w.png" alt="">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/155-e6a73d00-1920w.png" alt="">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/178-fbd1c6e1-1920w.png" alt="">
+      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/156-4ce2af71-1920w.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section stats">
+  <div class="wrap">
+    <h2>Les avis clients changent la donne</h2>
+    <p class="sub">Vos futurs clients décident en fonction de ce que les autres pensent de vous.</p>
+    <div class="stat-grid">
+      <div class="card reveal">
+        <div class="num"><span data-count="92">0</span><small>%</small></div>
+        <h3>des Français consultent les avis clients avant d'acheter</h3>
+        <p>C'est un fait : vos clients potentiels recherchent l'avis des autres avant de vous faire confiance.</p>
+      </div>
+      <div class="card reveal d1">
+        <div class="num"><span data-count="77">0</span><small>%</small></div>
+        <h3>passent à l'action grâce aux avis Google</h3>
+        <p>Plus qu'une simple référence, les avis sont devenus un véritable déclencheur d'achat.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="num"><span data-count="82">0</span><small>%</small></div>
+        <h3>sont convaincus par des avis authentiques</h3>
+        <p>Note + témoignage : c'est la combinaison gagnante pour gagner la confiance des consommateurs.</p>
+      </div>
+      <div class="card accent reveal d3">
+        <h3>Votre opportunité est là :</h3>
+        <ul>
+          <li>Des avis récents</li>
+          <li>Une note globale solide</li>
+          <li>Un volume d'avis conséquent</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATEUR -->
+<section class="section calc">
+  <div class="wrap">
+    <div class="calc-box">
+      <div>
+        <h2>Combien d'avis pourriez-vous obtenir ?</h2>
+        <p class="sub">Estimez le volume d'avis Google que GiveMe5 peut vous rapporter.</p>
+        <div class="slider-row">
+          <label for="day">Nombre d'avis par jour : <b id="vDay">2</b></label>
+          <input type="range" id="day" min="1" max="20" value="2">
+        </div>
+        <div class="slider-row">
+          <label for="month">Nombre de mois : <b id="vMonth">6</b></label>
+          <input type="range" id="month" min="1" max="24" value="6">
+        </div>
+        <p class="calc-note">Estimation sur une base de 20 jours d'ouverture par mois.</p>
+      </div>
+      <div class="result">
+        <div class="big" id="total">240</div>
+        <div class="lbl">avis en plus</div>
+        <div class="stars-row">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section class="section why" id="fonctionnalites">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;text-align:center">Pourquoi installer une plaque avis Google GiveMe5 ?</span>
+    <h2 style="margin-top:14px">Les avis clients : une véritable <span>machine à vendre</span></h2>
+    <p class="sub">Terminé les clients qui promettent de laisser un avis sans jamais le faire ! Pourquoi vos clients ne donnent-ils pas leur avis et comment y remédier ?</p>
+    <div class="ps">
+      <div class="ps-col today reveal">
+        <h3 class="tag">Aujourd'hui</h3>
+        <div class="ps-item today"><h4>Ils n'en mesurent pas l'importance</h4><p>Vos clients ne mesurent pas l'importance de leur avis et de l'impact qu'il a sur votre activité et laissent aux autres le soin de le faire.</p></div>
+        <div class="ps-item today"><h4>Par oubli ou manque de temps</h4><p>Nous sommes tous pareils : une fois passé la porte d'un restaurant ou d'une boutique, nous reprenons le cours de notre vie. Laisser un avis Google devient alors la dernière des priorités.</p></div>
+        <div class="ps-item today"><h4>C'est compliqué !</h4><p>Pour de nombreuses personnes peu à l'aise avec leur smartphone, la tâche peut paraître complexe et les empêcher de vous mettre un avis positif alors même qu'elles seraient ravies de le faire.</p></div>
+        <div class="ps-item today"><h4>Les clients mécontents sont plus visibles</h4><p>Les clients souhaitant mettre un avis négatif trouvent très bien le moyen de le faire et ont un fort impact négatif sur votre note globale.</p></div>
+      </div>
+      <div class="ps-col gm5 reveal d1">
+        <h3 class="tag">Avec GiveMe5</h3>
+        <div class="ps-item gm5"><h4>Demandez-leur simplement</h4><p>Au moment du paiement en caisse, demandez simplement au client s'il est content de son expérience dans votre établissement et rappelez-lui que son avis est important pour vous.</p></div>
+        <div class="ps-item gm5"><h4>Plus d'excuse !</h4><p>Vos clients donnent leur avis avant même de quitter votre établissement.</p></div>
+        <div class="ps-item gm5"><h4>Quelques secondes suffisent</h4><p>Un simple survol de la puce NFC ou du QR code avec son téléphone et votre client est automatiquement redirigé vers votre page d'avis Google.</p></div>
+        <div class="ps-item gm5"><h4>Votre note moyenne augmente significativement</h4><p>En multipliant les avis clients, vous augmentez votre note globale et les avis négatifs sont noyés dans la masse des avis positifs.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="section how">
+  <div class="wrap how-grid">
+    <div class="how-visual reveal">
+      <video class="how-video"
+             src="https://vid.cdn-website.com/6ee1641d/videos/EhiiiOGQvC4CTkVjCXJZ_Publication+Instagram+te%CC%81moignages-v.mp4"
+             poster="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/EhiiiOGQvC4CTkVjCXJZ_Publication+Instagram+te%CC%81moignages.v2.0000000-1920w.jpg"
+             autoplay muted loop playsinline aria-hidden="true"></video>
+    </div>
+    <div class="how-text reveal d1">
+      <h2>Comment ça marche ?</h2>
+      <p class="how-sub">La méthode la plus simple pour collecter les avis clients efficacement.</p>
+      <div class="how-step">
+        <h3><span aria-hidden="true">⚡</span> Facile à mettre en place</h3>
+        <p>Placez la plaque GiveMe5 en caisse à côté du terminal de paiement ou présentez la carte à vos clients.</p>
+      </div>
+      <div class="how-step">
+        <h3><span aria-hidden="true">📱</span> Vos clients scannent</h3>
+        <p>Un simple scan dirige vos clients directement vers votre page avis Google.</p>
+      </div>
+      <div class="how-step">
+        <h3><span aria-hidden="true">💫</span> Les étoiles pleuvent</h3>
+        <p>Ils n'ont plus qu'à donner leur avis en toute simplicité et sont ravis de le faire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="section" id="temoignages" style="background:var(--honey)">
+  <div class="wrap">
+    <div class="tst-head">
+      <span class="eyebrow">Ils l'utilisent tous les jours</span>
+      <h2>Témoignages</h2>
+    </div>
+    <div class="tst-grid">
+      <div class="tst reveal">
+        <div class="meta">
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <span class="badge">Avis Google</span>
+        </div>
+        <p>« Il faut avouer que ça marche bien ! En 2 mois j'ai eu plus d'avis que sur toute l'année dernière. »</p>
+        <div class="who">
+          <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Femme+Pexels-1920w.jpg" alt="Emma S.">
+          <div><b>Emma S.</b><span>Emma Beauté</span></div>
+        </div>
+      </div>
+      <div class="tst reveal d1">
+        <div class="meta">
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <span class="badge">Avis Google</span>
+        </div>
+        <p>« Simple et efficace ! Les clients scannent pendant qu'ils attendent l'addition. On a triplé nos avis en quelques semaines. »</p>
+        <div class="who">
+          <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Visage+Hamed+Gharaee-1920w.jpg" alt="Charles R.">
+          <div><b>Charles R.</b><span>L'entracte</span></div>
+        </div>
+      </div>
+      <div class="tst reveal d2">
+        <div class="meta">
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <span class="badge">Avis Google</span>
+        </div>
+        <p>« Enfin une solution qui ne prend pas la tête ! La plaque est sur mon comptoir et mes clients n'hésitent plus à laisser un avis. »</p>
+        <div class="who">
+          <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Capture+d-e-cran+2024-11-27+a-+12.03.03-1920w.png" alt="Laurent D.">
+          <div><b>Laurent D.</b><span>AC Optic</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carrousel photos en situation -->
+    <div class="photo-marquee" style="margin-top:60px">
+      <div class="photo-track">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001-1920w.png" alt="Homme tenant une plaque NFC">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+5-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+6-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+8-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+11-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+13-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+15-1920w.png" alt="Présentoir bouteilles de vin">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+16-1920w.png" alt="Boulangère derrière sa caisse">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+3-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+4-1920w.png" alt="Plaque GiveMe5 en situation">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/IMG_3229-1920w.png" alt="Comptoir d'un magasin">
+        <!-- duplicat pour boucle continue -->
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+5-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+6-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+8-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+11-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+13-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+15-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+16-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+3-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+4-1920w.png" alt="">
+        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/IMG_3229-1920w.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faqs" id="faq">
+  <div class="wrap">
+    <h2>Questions Fréquentes</h2>
+    <div class="faq-list">
+      <details class="faq" open>
+        <summary>Y a-t-il un abonnement ?</summary>
+        <div class="ans"><b>Non !</b> Il n'y a aucun abonnement ou renouvellement. Nos produits sont paramétrés une fois et le lien vers votre fiche Google est valable à vie.</div>
+      </details>
+      <details class="faq">
+        <summary>Cela fonctionne-t-il sur tous les téléphones ?</summary>
+        <div class="ans"><b>Absolument !</b> 90% des smartphones sont équipés de la technologie sans contact NFC et 100% peuvent scanner des QR codes.</div>
+      </details>
+      <details class="faq">
+        <summary>Faut-il avoir un compte Google pour laisser un avis ?</summary>
+        <div class="ans">Oui, seules les personnes ayant un compte Google peuvent laisser des avis. En revanche, il n'est pas nécessaire d'avoir une adresse Gmail : il est possible de créer un compte Google avec son adresse mail habituelle.</div>
+      </details>
+      <details class="faq">
+        <summary>Quels sont les délais de livraison ?</summary>
+        <div class="ans">Votre commande sera livrée sous 4 jours.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section final videobg dark">
+  <video src="https://vid.cdn-website.com/6ee1641d/videos/y6Vx3QLGRwMl9NxuLrSw_Publication+Instagram+te%CC%81moignages_bas+de+page-v.mp4"
+         poster="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/y6Vx3QLGRwMl9NxuLrSw_Publication+Instagram+te%CC%81moignages_bas+de+page.v2.0000000-1920w.jpg"
+         autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="wrap">
+    <h2>Commandez votre plaque GiveMe5 maintenant et faites exploser votre compteur d'avis.</h2>
+    <p>Obtenir des avis clients n'a jamais été aussi facile !</p>
+    <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Je Commande !</a>
+    <ul class="assure">
+      <li>Paiement sécurisé</li>
+      <li>Sans abonnement</li>
+      <li>Livré sous 4 jours</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <a href="#" class="footer-wordmark">GiveMe<span>5</span></a>
+    <div class="footer-tag">Spécialiste des avis clients Google</div>
+    <div class="footer-sep"></div>
+    <div class="fine">© 2026 Tous droits réservés | GiveMe5</div>
+    <div class="fine"><a href="mentions-legales.html">Mentions légales</a></div>
+  </div>
+</footer>
+
+<!-- CTA mobile fixe -->
+<div class="mobile-cta">
+  <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn" target="_blank" rel="noopener">Je Commande !</a>
+</div>
+
+<script>
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Calculateur — 20 jours d'ouverture / mois */
+const day=document.getElementById('day'),month=document.getElementById('month');
+const vDay=document.getElementById('vDay'),vMonth=document.getElementById('vMonth'),total=document.getElementById('total');
+function upd(){
+  vDay.textContent=day.value;
+  vMonth.textContent=month.value;
+  total.textContent=(day.value*month.value*20).toLocaleString('fr-FR');
+  if(!reduceMotion){
+    total.classList.remove('pulse');
+    void total.offsetWidth;           // relance l'animation
+    total.classList.add('pulse');
+  }
+}
+day.addEventListener('input',upd);
+month.addEventListener('input',upd);
+upd();
+
+/* Ombre du header au scroll */
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>10),{passive:true});
+
+/* Apparition au scroll */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* Compteurs animés */
+function countUp(el){
+  const target=+el.dataset.count, dur=1100, start=performance.now();
+  function frame(now){
+    const p=Math.min(1,(now-start)/dur);
+    el.textContent=Math.round(target*(1-Math.pow(1-p,3)));
+    if(p<1)requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+if(reduceMotion){
+  document.querySelectorAll('[data-count]').forEach(el=>el.textContent=el.dataset.count);
+}else{
+  const io2=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){countUp(e.target);io2.unobserve(e.target)}
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>io2.observe(el));
+}
+</script>
+</body>
+</html>
