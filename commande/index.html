@@ -15,45 +15,53 @@
   --ink:#23232e;--navy:#2e2e3a;--body:#565660;--honey:#fff7e0;--line:#f0e6cb;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Nunito Sans',sans-serif;color:var(--ink);line-height:1.6;font-size:17px;
-  background:linear-gradient(165deg,#fffdf6 0%,#fff3cf 58%,#ffe9a8 100%);min-height:100vh;
+html,body{height:100%}
+body{font-family:'Nunito Sans',sans-serif;color:var(--ink);line-height:1.5;font-size:16px;
+  background:linear-gradient(165deg,#fffdf6 0%,#fff3cf 58%,#ffe9a8 100%);
   display:flex;flex-direction:column}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 :focus-visible{outline:3px solid rgba(240,180,0,.65);outline-offset:3px;border-radius:6px}
 
-header{padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:12px}
-header img{height:52px;width:auto}
-header .wordmark{font-family:'Poppins',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:-1px}
+header{padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:10px;flex:none}
+header img{height:38px;width:auto}
+header .wordmark{font-family:'Poppins',sans-serif;font-weight:900;font-size:1.25rem;letter-spacing:-1px}
 header .wordmark b{color:var(--gold)}
 
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
-.box{background:#fff;border:1px solid var(--line);border-radius:26px;max-width:520px;width:100%;
-  padding:40px 34px;text-align:center;box-shadow:0 30px 70px rgba(35,35,46,.14)}
-.eyebrow{font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:2.5px;font-weight:700;
-  font-size:.8rem;color:var(--gold-deep)}
-h1{font-family:'Poppins',sans-serif;font-size:clamp(1.5rem,5vw,1.9rem);font-weight:900;
-  line-height:1.2;letter-spacing:-.02em;margin:10px 0 18px}
-.photo{margin:0 auto 10px;max-height:300px;width:auto}
-.stars{color:var(--star);font-size:1.2rem;letter-spacing:3px;margin-bottom:16px}
-.price{font-family:'Poppins',sans-serif;font-size:2.6rem;font-weight:900;line-height:1}
-.price small{font-size:1rem;font-weight:700;color:var(--body)}
-.assure{list-style:none;display:flex;flex-direction:column;gap:8px;margin:22px auto;
-  width:fit-content;text-align:left}
-.assure li{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.98rem}
-.assure li:before{content:"✓";flex:none;width:21px;height:21px;border-radius:50%;background:var(--gold);
-  color:var(--ink);font-size:.72rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 16px 16px;min-height:0}
+.box{background:#fff;border:1px solid var(--line);border-radius:24px;max-width:520px;width:100%;
+  padding:22px 24px 26px;text-align:center;box-shadow:0 24px 60px rgba(35,35,46,.14)}
+.eyebrow{font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:2px;font-weight:700;
+  font-size:.72rem;color:var(--gold-deep)}
+h1{font-family:'Poppins',sans-serif;font-size:clamp(1.25rem,4.5vw,1.65rem);font-weight:900;
+  line-height:1.18;letter-spacing:-.02em;margin:6px 0 10px}
+.photo{margin:0 auto 6px;max-height:clamp(140px,24vh,240px);width:auto}
+.price-row{display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.price-row .stars{color:var(--star);font-size:1rem;letter-spacing:2px}
+.price{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:900;line-height:1}
+.price small{font-size:.85rem;font-weight:700;color:var(--body)}
 .btn{display:block;font-family:'Poppins',sans-serif;background:var(--gold);color:var(--ink);
-  font-weight:700;font-size:1.08rem;padding:18px 28px;border-radius:40px;
+  font-weight:700;font-size:1.05rem;padding:16px 22px;border-radius:40px;margin-top:14px;
   box-shadow:0 10px 26px rgba(240,180,0,.45);transition:transform .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(240,180,0,.6)}
-.secure{font-size:.85rem;color:var(--body);margin-top:12px}
-.more{display:inline-block;margin-top:20px;font-weight:700;font-size:.92rem;color:var(--gold-deep)}
+.secure{font-size:.78rem;color:var(--body);margin-top:8px}
+.assure{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 16px;margin-top:12px}
+.assure li{display:flex;align-items:center;gap:7px;font-weight:700;font-size:.86rem}
+.assure li:before{content:"✓";flex:none;width:18px;height:18px;border-radius:50%;background:var(--gold);
+  color:var(--ink);font-size:.62rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.more{display:inline-block;margin-top:14px;font-weight:700;font-size:.85rem;color:var(--gold-deep)}
 .more:hover{text-decoration:underline}
 
-footer{padding:20px;text-align:center;font-size:.85rem;color:var(--body)}
+footer{padding:10px;text-align:center;font-size:.78rem;color:var(--body);flex:none}
 footer a{color:var(--gold-deep);font-weight:700}
 
+/* petits écrans en hauteur : on compresse encore */
+@media(max-height:700px){
+  .photo{max-height:120px}
+  header{padding:6px 16px}
+  header img{height:32px}
+  .box{padding:16px 20px 20px}
+}
 @media(prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
 </head>
@@ -69,15 +77,17 @@ footer a{color:var(--gold-deep);font-weight:700}
     <span class="eyebrow">Suite à notre échange</span>
     <h1>Commandez votre plaque NFC GiveMe5</h1>
     <img class="photo" src="../assets/img/plaque-49.jpg" alt="Plaque NFC GiveMe5 avec QR code — 49 €">
-    <div class="stars" aria-hidden="true">★★★★★</div>
-    <div class="price">49 € <small>· paiement unique</small></div>
+    <div class="price-row">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <span class="price">49 € <small>· paiement unique</small></span>
+    </div>
+    <a class="btn" href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" target="_blank" rel="noopener">Commander ma plaque NFC — 49 €</a>
+    <p class="secure">Paiement sécurisé par Stripe</p>
     <ul class="assure">
       <li>Sans abonnement</li>
       <li>Valable à vie</li>
       <li>Livrée sous 4 jours</li>
     </ul>
-    <a class="btn" href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" target="_blank" rel="noopener">Commander ma plaque NFC — 49 €</a>
-    <p class="secure">Paiement sécurisé par Stripe</p>
     <a class="more" href="../">Voir la présentation complète →</a>
   </div>
 </main>
