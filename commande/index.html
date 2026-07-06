@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commander ma plaque NFC — GiveMe5</title>
+<meta name="description" content="Commandez votre plaque NFC GiveMe5 : 49 €, sans abonnement, valable à vie, livrée sous 4 jours.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#f0b400;--gold-soft:#ffca28;--gold-deep:#a67300;--star:#fbbc04;
+  --ink:#23232e;--navy:#2e2e3a;--body:#565660;--honey:#fff7e0;--line:#f0e6cb;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Nunito Sans',sans-serif;color:var(--ink);line-height:1.5;font-size:16px;
+  background:linear-gradient(165deg,#fffdf6 0%,#fff3cf 58%,#ffe9a8 100%);
+  display:flex;flex-direction:column}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:3px solid rgba(240,180,0,.65);outline-offset:3px;border-radius:6px}
+
+header{padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:10px;flex:none}
+header img{height:38px;width:auto}
+header .wordmark{font-family:'Poppins',sans-serif;font-weight:900;font-size:1.25rem;letter-spacing:-1px}
+header .wordmark b{color:var(--gold)}
+
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 16px 16px;min-height:0}
+.box{background:#fff;border:1px solid var(--line);border-radius:24px;max-width:520px;width:100%;
+  padding:22px 24px 26px;text-align:center;box-shadow:0 24px 60px rgba(35,35,46,.14)}
+.eyebrow{font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:2px;font-weight:700;
+  font-size:.72rem;color:var(--gold-deep)}
+h1{font-family:'Poppins',sans-serif;font-size:clamp(1.25rem,4.5vw,1.65rem);font-weight:900;
+  line-height:1.18;letter-spacing:-.02em;margin:6px 0 6px}
+.benefit{font-size:.95rem;color:var(--body);margin-bottom:10px;line-height:1.45}
+.photo{margin:0 auto 4px;max-height:clamp(170px,30vh,290px);width:auto}
+.btn{display:block;font-family:'Poppins',sans-serif;background:var(--gold);color:var(--ink);
+  font-weight:700;font-size:1.05rem;padding:16px 22px;border-radius:40px;margin-top:14px;
+  box-shadow:0 10px 26px rgba(240,180,0,.45);transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(240,180,0,.6)}
+.secure{font-size:.78rem;color:var(--body);margin-top:8px}
+.assure{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 16px;margin-top:12px}
+.assure li{display:flex;align-items:center;gap:7px;font-weight:700;font-size:.86rem}
+.assure li:before{content:"✓";flex:none;width:18px;height:18px;border-radius:50%;background:var(--gold);
+  color:var(--ink);font-size:.62rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.more{display:inline-block;margin-top:14px;font-weight:700;font-size:.85rem;color:var(--gold-deep)}
+.more:hover{text-decoration:underline}
+
+footer{padding:10px;text-align:center;font-size:.78rem;color:var(--body);flex:none}
+footer a{color:var(--gold-deep);font-weight:700}
+
+/* petits écrans en hauteur : on compresse encore */
+@media(max-height:700px){
+  .photo{max-height:120px}
+  header{padding:6px 16px}
+  header img{height:32px}
+  .box{padding:16px 20px 20px}
+}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="../assets/img/logo-gm5.png" alt="GiveMe5">
+  <span class="wordmark">GiveMe<b>5</b></span>
+</header>
+
+<main>
+  <div class="box">
+    <span class="eyebrow">Suite à notre échange</span>
+    <h1>Commandez votre plaque NFC GiveMe5</h1>
+    <p class="benefit">Transformez vos clients satisfaits en avis Google, simplement en approchant leur téléphone.</p>
+    <img class="photo" src="../assets/img/plaque-49.jpg" alt="Plaque NFC GiveMe5 avec QR code — 49 €">
+    <a class="btn" href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" target="_blank" rel="noopener">Commander ma plaque — 49 €</a>
+    <p class="secure">Paiement unique et sécurisé par Stripe</p>
+    <ul class="assure">
+      <li>Sans abonnement</li>
+      <li>Configurée pour votre fiche Google avant expédition</li>
+      <li>Valable à vie</li>
+      <li>Livrée sous 4 jours</li>
+    </ul>
+    <a class="more" href="../">Voir la présentation complète →</a>
+  </div>
+</main>
+
+<footer>
+  © <span id="year">2026</span> GiveMe5 · <a href="../mentions-legales.html">Mentions légales</a>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear()</script>
+</body>
+</html>

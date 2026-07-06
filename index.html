@@ -47,7 +47,7 @@ h2{font-size:clamp(1.8rem,3.4vw,2.5rem);text-align:center}
 
 /* Boutons */
 .btn{display:inline-block;font-family:'Poppins',sans-serif;background:var(--gold);color:var(--ink);
-  font-weight:700;font-size:1rem;padding:15px 36px;border-radius:40px;
+  font-weight:700;font-size:1rem;padding:15px 36px;border-radius:40px;white-space:nowrap;
   box-shadow:0 8px 22px rgba(240,180,0,.42);border:none;cursor:pointer;
   transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
 .btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(240,180,0,.55);filter:brightness(1.04)}
@@ -273,33 +273,54 @@ footer .fine{font-size:.9rem;margin-top:6px}
 
 /* ============ Responsive ============ */
 @media(max-width:900px){
-  .hero .wrap{grid-template-columns:1fr;text-align:center}
+  .hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:44px;padding-bottom:60px;gap:36px}
   .rating-live{justify-content:center}
   .hero-img{order:-1}
   .assure{justify-content:center}
-  .nav{height:76px}
-  .logo-icon img{height:52px}
-  .wordmark{font-size:1.5rem}
-  .header-cta{padding:11px 20px;font-size:.9rem}
-  .stat-grid{grid-template-columns:1fr 1fr}
+  .nav{height:72px}
+  .logo-icon img{height:48px}
+  .wordmark{font-size:1.45rem}
+  .header-cta{padding:10px 18px;font-size:.85rem}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:18px}
   .calc-box,.ps,.tst-grid,.ease-grid,.how-grid{grid-template-columns:1fr}
+  .calc-box,.ease-grid,.how-grid{gap:40px}
   .ease-video{max-width:460px;margin:0 auto}
   .ease-text h2{text-align:center}
   .ease-text .eyebrow{display:block;text-align:center}
-  .how-visual{max-width:480px;margin:0 auto 20px}
+  .ease-text{text-align:center}
+  .ease-list{text-align:left;max-width:520px;margin-left:auto;margin-right:auto;margin-bottom:30px}
+  .how-visual{max-width:480px;margin:0 auto}
   .how-text h2,.how-sub{text-align:center}
   .calc h2,.calc .sub{text-align:center}
+  .slider-row{max-width:520px;margin-left:auto;margin-right:auto}
+  .calc-note{text-align:center}
   .mobile-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:60;
     padding:12px 16px calc(12px + env(safe-area-inset-bottom));
     background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
   .mobile-cta .btn{display:block;text-align:center;width:100%}
   body{padding-bottom:80px}
 }
+@media(max-width:640px){
+  /* le CTA du header ne tient pas : la barre fixe en bas prend le relais */
+  .header-cta{display:none}
+  .nav{height:64px;grid-template-columns:auto 1fr auto}
+  .logo-icon img{height:42px}
+  .wordmark{justify-self:center}
+  .hero-star{display:none}
+  .hero-glow{display:none}
+  .hero h1{font-size:clamp(1.9rem,8vw,2.3rem)}
+  .hero .lead{font-size:1.12rem}
+  .btn-lg{font-size:1rem;padding:16px 34px}
+  .assure li{font-size:.88rem}
+  .ps-col{padding:28px 22px}
+  .result{padding:32px 22px}
+  .result .big{font-size:3.4rem}
+}
 @media(max-width:560px){
   .stat-grid{grid-template-columns:1fr}
-  .marquee-track{gap:56px}
-  .marquee-track img{height:72px}
-  .photo-track img{height:220px}
+  .marquee-track{gap:48px}
+  .marquee-track img{height:64px}
+  .photo-track img{height:210px}
 }
 
 /* ============ Motion réduit ============ */
@@ -318,7 +339,7 @@ footer .fine{font-size:.9rem;margin-top:6px}
 <!-- HEADER -->
 <header id="header">
   <div class="wrap nav">
-    <a href="#" class="logo-icon"><img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Logo_GM5-1920w.png" alt="GiveMe5"></a>
+    <a href="#" class="logo-icon"><img src="assets/img/logo-gm5.png" alt="GiveMe5"></a>
     <a href="#" class="wordmark">GiveMe<b>5</b></a>
     <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn header-cta" target="_blank" rel="noopener">Je Commande !</a>
   </div>
@@ -340,17 +361,17 @@ footer .fine{font-size:.9rem;margin-top:6px}
       <h1>Multipliez vos <span class="hl">avis Google</span> de manière simple et efficace.</h1>
       <p class="lead">Avec GiveMe5 les avis, c'est <em>Easy&nbsp;!</em></p>
       <div class="hero-cta">
-        <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Je Commande !</a>
+        <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Commander ma plaque NFC — 49 €</a>
       </div>
       <ul class="assure">
         <li>Sans abonnement</li>
-        <li>Valable à vie</li>
-        <li>Livré sous 4 jours</li>
+        <li>Configurée pour votre fiche Google</li>
+        <li>Livrée sous 4 jours</li>
       </ul>
     </div>
     <div class="hero-img">
-      <video src="https://vid.cdn-website.com/6ee1641d/videos/K306dZnTpaiSTsVhdHhg_Plaque-v.mp4"
-             poster="https://irp.cdn-website.com/6ee1641d/dms3rep/multi/K306dZnTpaiSTsVhdHhg_Plaque.v2.0000000.jpg"
+      <video src="assets/video/plaque.mp4"
+             poster="assets/img/poster-plaque.jpg"
              autoplay muted loop playsinline aria-hidden="true"></video>
     </div>
   </div>
@@ -360,8 +381,8 @@ footer .fine{font-size:.9rem;margin-top:6px}
 <section class="section ease">
   <div class="wrap ease-grid">
     <div class="ease-video reveal">
-      <video src="https://vid.cdn-website.com/6ee1641d/videos/BgcCrGsLTKWQovzQEbGQ_Yellow+Kids+Fashion+Testimonies+Video-v.mp4"
-             poster="https://irp.cdn-website.com/6ee1641d/dms3rep/multi/BgcCrGsLTKWQovzQEbGQ_Yellow+Kids+Fashion+Testimonies+Video.v2.0000000.jpg"
+      <video src="assets/video/scan.mp4"
+             poster="assets/img/poster-scan.jpg"
              autoplay muted loop playsinline aria-hidden="true"></video>
     </div>
     <div class="ease-text reveal d1">
@@ -374,7 +395,7 @@ footer .fine{font-size:.9rem;margin-top:6px}
         <li><b>Quelques secondes</b> — l'avis est laissé avant même de quitter votre établissement.</li>
         <li><b>Accessible à tous</b> — compatible avec 100% des smartphones via le QR code.</li>
       </ul>
-      <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Je Commande !</a>
+      <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Commander ma plaque NFC — 49 €</a>
     </div>
   </div>
 </section>
@@ -386,17 +407,17 @@ footer .fine{font-size:.9rem;margin-top:6px}
   </div>
   <div class="marquee">
     <div class="marquee-track">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/183-5839f05c-1920w.png" alt="Krys">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/181-66514bba-1920w.png" alt="Renault">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/155-e6a73d00-1920w.png" alt="iad">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/178-fbd1c6e1-1920w.png" alt="La ronde des pains">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/156-4ce2af71-1920w.png" alt="Propriétés privées">
+      <img src="assets/img/logo-krys.png" alt="Krys">
+      <img src="assets/img/logo-renault.png" alt="Renault">
+      <img src="assets/img/logo-iad.png" alt="iad">
+      <img src="assets/img/logo-ronde-des-pains.png" alt="La ronde des pains">
+      <img src="assets/img/logo-proprietes-privees.png" alt="Propriétés privées">
       <!-- duplicat pour boucle continue -->
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/183-5839f05c-1920w.png" alt="">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/181-66514bba-1920w.png" alt="">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/155-e6a73d00-1920w.png" alt="">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/178-fbd1c6e1-1920w.png" alt="">
-      <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/156-4ce2af71-1920w.png" alt="">
+      <img src="assets/img/logo-krys.png" alt="">
+      <img src="assets/img/logo-renault.png" alt="">
+      <img src="assets/img/logo-iad.png" alt="">
+      <img src="assets/img/logo-ronde-des-pains.png" alt="">
+      <img src="assets/img/logo-proprietes-privees.png" alt="">
     </div>
   </div>
 </section>
@@ -408,17 +429,17 @@ footer .fine{font-size:.9rem;margin-top:6px}
     <p class="sub">Vos futurs clients décident en fonction de ce que les autres pensent de vous.</p>
     <div class="stat-grid">
       <div class="card reveal">
-        <div class="num"><span data-count="92">0</span><small>%</small></div>
+        <div class="num"><span data-count="92">92</span><small>%</small></div>
         <h3>des Français consultent les avis clients avant d'acheter</h3>
         <p>C'est un fait : vos clients potentiels recherchent l'avis des autres avant de vous faire confiance.</p>
       </div>
       <div class="card reveal d1">
-        <div class="num"><span data-count="77">0</span><small>%</small></div>
+        <div class="num"><span data-count="77">77</span><small>%</small></div>
         <h3>passent à l'action grâce aux avis Google</h3>
         <p>Plus qu'une simple référence, les avis sont devenus un véritable déclencheur d'achat.</p>
       </div>
       <div class="card reveal d2">
-        <div class="num"><span data-count="82">0</span><small>%</small></div>
+        <div class="num"><span data-count="82">82</span><small>%</small></div>
         <h3>sont convaincus par des avis authentiques</h3>
         <p>Note + témoignage : c'est la combinaison gagnante pour gagner la confiance des consommateurs.</p>
       </div>
@@ -490,8 +511,8 @@ footer .fine{font-size:.9rem;margin-top:6px}
   <div class="wrap how-grid">
     <div class="how-visual reveal">
       <video class="how-video"
-             src="https://vid.cdn-website.com/6ee1641d/videos/EhiiiOGQvC4CTkVjCXJZ_Publication+Instagram+te%CC%81moignages-v.mp4"
-             poster="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/EhiiiOGQvC4CTkVjCXJZ_Publication+Instagram+te%CC%81moignages.v2.0000000-1920w.jpg"
+             src="assets/video/temoignages.mp4"
+             poster="assets/img/poster-temoignages.jpg"
              autoplay muted loop playsinline aria-hidden="true"></video>
     </div>
     <div class="how-text reveal d1">
@@ -528,7 +549,7 @@ footer .fine{font-size:.9rem;margin-top:6px}
         </div>
         <p>« Il faut avouer que ça marche bien ! En 2 mois j'ai eu plus d'avis que sur toute l'année dernière. »</p>
         <div class="who">
-          <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Femme+Pexels-1920w.jpg" alt="Emma S.">
+          <img src="assets/img/temoin-emma.jpg" alt="Emma S.">
           <div><b>Emma S.</b><span>Emma Beauté</span></div>
         </div>
       </div>
@@ -539,7 +560,7 @@ footer .fine{font-size:.9rem;margin-top:6px}
         </div>
         <p>« Simple et efficace ! Les clients scannent pendant qu'ils attendent l'addition. On a triplé nos avis en quelques semaines. »</p>
         <div class="who">
-          <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Visage+Hamed+Gharaee-1920w.jpg" alt="Charles R.">
+          <img src="assets/img/temoin-charles.jpg" alt="Charles R.">
           <div><b>Charles R.</b><span>L'entracte</span></div>
         </div>
       </div>
@@ -550,7 +571,7 @@ footer .fine{font-size:.9rem;margin-top:6px}
         </div>
         <p>« Enfin une solution qui ne prend pas la tête ! La plaque est sur mon comptoir et mes clients n'hésitent plus à laisser un avis. »</p>
         <div class="who">
-          <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/Capture+d-e-cran+2024-11-27+a-+12.03.03-1920w.png" alt="Laurent D.">
+          <img src="assets/img/temoin-laurent.png" alt="Laurent D.">
           <div><b>Laurent D.</b><span>AC Optic</span></div>
         </div>
       </div>
@@ -559,31 +580,31 @@ footer .fine{font-size:.9rem;margin-top:6px}
     <!-- Carrousel photos en situation -->
     <div class="photo-marquee" style="margin-top:60px">
       <div class="photo-track">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001-1920w.png" alt="Homme tenant une plaque NFC">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+5-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+6-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+8-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+11-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+13-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+15-1920w.png" alt="Présentoir bouteilles de vin">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+16-1920w.png" alt="Boulangère derrière sa caisse">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+3-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+4-1920w.png" alt="Plaque GiveMe5 en situation">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/IMG_3229-1920w.png" alt="Comptoir d'un magasin">
+        <img src="assets/img/situation-01.jpg" alt="Homme tenant une plaque NFC">
+        <img src="assets/img/situation-02.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-03.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-04.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-05.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-06.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-07.jpg" alt="Présentoir bouteilles de vin">
+        <img src="assets/img/situation-08.jpg" alt="Boulangère derrière sa caisse">
+        <img src="assets/img/situation-09.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-10.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-11.jpg" alt="Plaque GiveMe5 en situation">
+        <img src="assets/img/situation-12.jpg" alt="Comptoir d'un magasin">
         <!-- duplicat pour boucle continue -->
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+5-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+6-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+8-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+11-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+13-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+15-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000001+16-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+3-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/image0000011+4-1920w.png" alt="">
-        <img src="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/IMG_3229-1920w.png" alt="">
+        <img src="assets/img/situation-01.jpg" alt="">
+        <img src="assets/img/situation-02.jpg" alt="">
+        <img src="assets/img/situation-03.jpg" alt="">
+        <img src="assets/img/situation-04.jpg" alt="">
+        <img src="assets/img/situation-05.jpg" alt="">
+        <img src="assets/img/situation-06.jpg" alt="">
+        <img src="assets/img/situation-07.jpg" alt="">
+        <img src="assets/img/situation-08.jpg" alt="">
+        <img src="assets/img/situation-09.jpg" alt="">
+        <img src="assets/img/situation-10.jpg" alt="">
+        <img src="assets/img/situation-11.jpg" alt="">
+        <img src="assets/img/situation-12.jpg" alt="">
       </div>
     </div>
   </div>
@@ -616,13 +637,13 @@ footer .fine{font-size:.9rem;margin-top:6px}
 
 <!-- CTA FINAL -->
 <section class="section final videobg dark">
-  <video src="https://vid.cdn-website.com/6ee1641d/videos/y6Vx3QLGRwMl9NxuLrSw_Publication+Instagram+te%CC%81moignages_bas+de+page-v.mp4"
-         poster="https://lirp.cdn-website.com/6ee1641d/dms3rep/multi/opt/y6Vx3QLGRwMl9NxuLrSw_Publication+Instagram+te%CC%81moignages_bas+de+page.v2.0000000-1920w.jpg"
+  <video src="assets/video/cta.mp4"
+         poster="assets/img/poster-cta.jpg"
          autoplay muted loop playsinline aria-hidden="true"></video>
   <div class="wrap">
-    <h2>Commandez votre plaque GiveMe5 maintenant et faites exploser votre compteur d'avis.</h2>
+    <h2>Commandez votre plaque GiveMe5 et collectez vos avis sans effort.</h2>
     <p>Obtenir des avis clients n'a jamais été aussi facile !</p>
-    <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Je Commande !</a>
+    <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn btn-lg" target="_blank" rel="noopener">Commander ma plaque NFC — 49 €</a>
     <ul class="assure">
       <li>Paiement sécurisé</li>
       <li>Sans abonnement</li>
@@ -637,14 +658,14 @@ footer .fine{font-size:.9rem;margin-top:6px}
     <a href="#" class="footer-wordmark">GiveMe<span>5</span></a>
     <div class="footer-tag">Spécialiste des avis clients Google</div>
     <div class="footer-sep"></div>
-    <div class="fine">© 2026 Tous droits réservés | GiveMe5</div>
+    <div class="fine">© <span id="year">2026</span> Tous droits réservés | GiveMe5</div>
     <div class="fine"><a href="mentions-legales.html">Mentions légales</a></div>
   </div>
 </footer>
 
 <!-- CTA mobile fixe -->
 <div class="mobile-cta">
-  <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn" target="_blank" rel="noopener">Je Commande !</a>
+  <a href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" class="btn" target="_blank" rel="noopener">Commander ma plaque NFC — 49 €</a>
 </div>
 
 <script>
@@ -699,6 +720,10 @@ if(reduceMotion){
   },{threshold:.5});
   document.querySelectorAll('[data-count]').forEach(el=>io2.observe(el));
 }
+
+/* Année du footer */
+const y=document.getElementById('year');
+if(y)y.textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
