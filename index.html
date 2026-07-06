@@ -365,8 +365,8 @@ footer .fine{font-size:.9rem;margin-top:6px}
       </div>
       <ul class="assure">
         <li>Sans abonnement</li>
-        <li>Valable à vie</li>
-        <li>Livré sous 4 jours</li>
+        <li>Configurée pour votre fiche Google</li>
+        <li>Livrée sous 4 jours</li>
       </ul>
     </div>
     <div class="hero-img">
@@ -658,7 +658,7 @@ footer .fine{font-size:.9rem;margin-top:6px}
     <a href="#" class="footer-wordmark">GiveMe<span>5</span></a>
     <div class="footer-tag">Spécialiste des avis clients Google</div>
     <div class="footer-sep"></div>
-    <div class="fine">© 2026 Tous droits réservés | GiveMe5</div>
+    <div class="fine">© <span id="year">2026</span> Tous droits réservés | GiveMe5</div>
     <div class="fine"><a href="mentions-legales.html">Mentions légales</a></div>
   </div>
 </footer>
@@ -720,6 +720,10 @@ if(reduceMotion){
   },{threshold:.5});
   document.querySelectorAll('[data-count]').forEach(el=>io2.observe(el));
 }
+
+/* Année du footer */
+const y=document.getElementById('year');
+if(y)y.textContent=new Date().getFullYear();
 </script>
 </body>
 </html>

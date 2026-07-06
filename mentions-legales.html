@@ -86,9 +86,10 @@ footer a{color:var(--gold)}.fine{font-size:.9rem;margin-top:8px}
 <footer>
   <div class="wrap">
     <a href="index.html" class="footer-wordmark">GiveMe<span>5</span></a>
-    <div class="fine">© 2026 Tous droits réservés | GiveMe5</div>
+    <div class="fine">© <span id="year">2026</span> Tous droits réservés | GiveMe5</div>
     <div class="fine"><a href="mentions-legales.html">Mentions légales</a></div>
   </div>
 </footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear()</script>
 </body>
 </html>

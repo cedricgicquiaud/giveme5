@@ -34,7 +34,8 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 1
 .eyebrow{font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:2px;font-weight:700;
   font-size:.72rem;color:var(--gold-deep)}
 h1{font-family:'Poppins',sans-serif;font-size:clamp(1.25rem,4.5vw,1.65rem);font-weight:900;
-  line-height:1.18;letter-spacing:-.02em;margin:6px 0 10px}
+  line-height:1.18;letter-spacing:-.02em;margin:6px 0 6px}
+.benefit{font-size:.95rem;color:var(--body);margin-bottom:10px;line-height:1.45}
 .photo{margin:0 auto 4px;max-height:clamp(170px,30vh,290px);width:auto}
 .btn{display:block;font-family:'Poppins',sans-serif;background:var(--gold);color:var(--ink);
   font-weight:700;font-size:1.05rem;padding:16px 22px;border-radius:40px;margin-top:14px;
@@ -72,11 +73,13 @@ footer a{color:var(--gold-deep);font-weight:700}
   <div class="box">
     <span class="eyebrow">Suite à notre échange</span>
     <h1>Commandez votre plaque NFC GiveMe5</h1>
+    <p class="benefit">Transformez vos clients satisfaits en avis Google, simplement en approchant leur téléphone.</p>
     <img class="photo" src="../assets/img/plaque-49.jpg" alt="Plaque NFC GiveMe5 avec QR code — 49 €">
     <a class="btn" href="https://buy.stripe.com/4gwaFi4IL4aoaRO6oq" target="_blank" rel="noopener">Commander ma plaque — 49 €</a>
     <p class="secure">Paiement unique et sécurisé par Stripe</p>
     <ul class="assure">
       <li>Sans abonnement</li>
+      <li>Configurée pour votre fiche Google avant expédition</li>
       <li>Valable à vie</li>
       <li>Livrée sous 4 jours</li>
     </ul>
@@ -85,8 +88,9 @@ footer a{color:var(--gold-deep);font-weight:700}
 </main>
 
 <footer>
-  © 2026 GiveMe5 · <a href="../mentions-legales.html">Mentions légales</a>
+  © <span id="year">2026</span> GiveMe5 · <a href="../mentions-legales.html">Mentions légales</a>
 </footer>
 
+<script>document.getElementById("year").textContent=new Date().getFullYear()</script>
 </body>
 </html>
