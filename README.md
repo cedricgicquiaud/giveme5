@@ -24,3 +24,13 @@ Site 100 % statique : HTML/CSS/JS vanilla, aucun build, aucune dépendance exter
 ## Paiement
 
 CTA « Commander » → lien de paiement Stripe (paiement unique, 49 €).
+
+## Suivi des affiliés et parrains
+
+Script : `assets/js/ref.js`, chargé par `index.html` et `commande/index.html`.
+
+- Un lien `https://hello.giveme5xxxxx.fr/?ref=marie` (ou `/commande/?ref=marie`) retient l'identifiant `marie` pendant 60 jours dans le navigateur du visiteur.
+- Le script l'ajoute à tous les liens de paiement Stripe sous la forme `client_reference_id=marie`.
+- Dernier clic gagnant : un nouveau `?ref=` remplace l'ancien.
+- Identifiant accepté : lettres, chiffres, tirets et traits de soulignement (60 caractères max). Tout autre valeur est ignorée et le paiement fonctionne normalement.
+- Pour retrouver les ventes d'un affilié : Stripe → Paiements → filtrer ou exporter sur « Client reference ID ».
