@@ -30,8 +30,9 @@ no subscription. This repository holds the public sales site; the back office th
   accepted.
 - **Review estimator** — two sliders estimate the reviews a shop can expect (reviews per day × months × 20 opening
   days).
-- **Checkout in one link** — every call to action leads to a Stripe Payment Link: one-off payment, no checkout code
-  to maintain.
+- **Checkout in one link, with referral tracking** — every call to action leads to a Stripe Payment Link: one-off
+  payment, no checkout code to maintain. A `?ref=<id>` link is remembered for 60 days and passed to Stripe as
+  `client_reference_id`, so each sale can be traced back to its affiliate (last click wins).
 
 ![Review estimator](docs/screenshots/calculator.png)
 
@@ -90,6 +91,7 @@ Key decisions:
 index.html             full sales page: hero, estimator, how it works, FAQ
 commande/index.html    short order page, texted after a phone call
 mentions-legales.html  legal notice
+assets/js/ref.js       affiliate referral tracking on payment links
 assets/img/            product photos and visuals
 assets/video/          product videos, self-hosted
 docs/screenshots/      README screenshots
